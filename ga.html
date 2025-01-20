@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>error</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: monospace;
+            color: black;
+            background-color: white;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        .error-text {
+            padding: 10px;
+        }
+    </style>
+    <script>
+        let pressCount = 0; // Counter for "o" key presses
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "o") {
+                pressCount++;
+                if (pressCount === 5) {
+                    // Reset the counter
+                    pressCount = 0;
+
+                    // Open a new page and add the iframe
+                    const newWindow = window.open("about:blank", "_blank");
+                    if (newWindow) {
+                        newWindow.document.write(`
+                            <!DOCTYPE html>
+                            <html lang="en">
+                            <head>
+                                <meta charset="UTF-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                <title> </title>
+                                <style>
+                                    body {
+                                        margin: 0;
+                                        height: 100vh;
+                                    }
+                                    iframe {
+                                        border: none;
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <iframe src="https://example.com"></iframe>
+                            </body>
+                            </html>
+                        `);
+                        newWindow.document.close();
+                    }
+                }
+            } else {
+                // Reset counter if another key is pressed
+                pressCount = 0;
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="error-text">(ERROR, not found)</div>
+</body>
+</html>
