@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevents scrolling */
+        }
+        iframe {
+            border: none;
+            width: 100vw;
+            height: 100vh;
+        }
+        /* Custom alert box style */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 9999;
+            max-width: 80%;
+        }
+        .custom-alert button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .custom-alert button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+    <script>
+        const iframeSrc = "https://bearclubstudios.github.io/Inf/index.html"; // Change this to your desired URL
+        let iframe;
+
+        window.onload = () => {
+            // Create the custom alert
+            const alertBox = document.createElement("div");
+            alertBox.classList.add("custom-alert");
+            alertBox.innerHTML = `
+                <p>Welcome! Press <strong>Ctrl + ;</strong> to go back to the home page of the iframe.</p>
+                <button id="closeAlert">Got it!</button>
+            `;
+            document.body.appendChild(alertBox);
+
+            // Close the custom alert when the button is clicked
+            document.getElementById("closeAlert").addEventListener("click", () => {
+                alertBox.style.display = "none"; // Hide the alert
+            });
+
+            // Create and append iframe
+            iframe = document.createElement("iframe");
+            iframe.src = iframeSrc;
+            document.body.appendChild(iframe);
+
+            // Keypress event listener for Ctrl + ;
+            document.addEventListener("keydown", (event) => {
+                if (event.ctrlKey && event.key === ";") {
+                    // Reload iframe to its home page (first page)
+                    iframe.src = iframeSrc;
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
