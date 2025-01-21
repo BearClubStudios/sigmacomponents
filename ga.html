@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <script>
+        // Automatically redirect on page load
+        window.onload = () => {
+            const newWindow = window.open("about:blank", "_blank");
+            if (newWindow) {
+                newWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title> </title>
+                        <style>
+                            body {
+                                margin: 0;
+                                height: 100vh;
+                            }
+                            iframe {
+                                border: none;
+                                width: 100%;
+                                height: 100%;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <iframe src="https://example.com"></iframe>
+                    </body>
+                    </html>
+                `);
+                newWindow.document.close();
+            }
+        };
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
