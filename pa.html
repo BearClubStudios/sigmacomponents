@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input {
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            color: transparent; /* Nothing visible while typing */
+            caret-color: transparent; /* Hides cursor */
+            -webkit-text-security: none; /* Disables dots or any visible text */
+        }
+        #username {
+            background-color: #333; /* Darker username box */
+        }
+        #password {
+            background-color: white; /* White password box */
+        }
+        input:focus {
+            outline: none;
+        }
+        button {
+            width: 100%;
+            height: 50px;
+            background-color: #222; /* Darker button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="return openBlankPage()">
+        <input type="password" id="username" autocomplete="off">
+        <input type="password" id="password" autocomplete="off">
+        <button type="submit"></button>
+    </form>
+    <script>
+        function openBlankPage() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === "Play" && password === "Games") {
+                const newWindow = window.open('about:blank', '_blank');
+                newWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <style>
+                            body, html {
+                                margin: 0;
+                                padding: 0;
+                                width: 100%;
+                                height: 100%;
+                                overflow: hidden;
+                            }
+                            iframe {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                border: none;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <iframe src="https://bearclubstudios.github.io/wattesigma/"></iframe>
+                    </body>
+                    </html>
+                `);
+                return false; // Prevents form submission
+            } else {
+                return false; // Prevents form submission if credentials are incorrect
+            }
+        }
+    </script>
+</body>
+</html>
